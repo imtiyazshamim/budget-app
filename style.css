@@ -1,0 +1,378 @@
+:root {
+  --primary: #7b56ff;
+  --secondary: #ff6fb7;
+  --tertiary: #a9e61c;
+  --other: #00c9ec;
+  --other2: #ffcd44;
+  --white: #FFFFFF;
+  --greyLight-1: #ebf2fc;
+  --greyLight-2: #d5ddf3;
+  --greyLight-3: #bec8e4;
+  --greyDark: #5b657a;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  overflow-y: scroll;
+  font-family: "Poppins", sans-serif;
+}
+html h2 {
+  font-weight: 300;
+}
+
+#app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--greyLight-1);
+}
+
+.container {
+  display: grid;
+  grid-template-rows: 40% 60%;
+  flex-direction: column;
+  height: 59.7rem;
+  width: 30rem;
+  margin: 5rem 2rem;
+  box-shadow: 0px 20px 40px rgba(91, 101, 122, 0.15);
+  border-radius: 2rem;
+  background: var(--white);
+  color: var(--greyDark);
+  letter-spacing: 0.04rem;
+}
+.container button {
+  outline: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.balance {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 50% 50%;
+  justify-items: center;
+  align-items: center;
+  grid-column-gap: 2rem;
+  padding: 2.4rem;
+  background: var(--primary);
+  background-image: linear-gradient(-135deg, #7b56ff 40%, #52e2ff 120%);
+  border-top-left-radius: 1.8rem;
+  border-top-right-radius: 1.8rem;
+}
+.balance__total {
+  grid-column: 1/3;
+  color: var(--white);
+  text-align: center;
+}
+.balance__total h1 {
+  font-weight: 400;
+}
+.balance__total p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.8rem;
+}
+.balance__total p .pound {
+  font-size: 2.2rem;
+}
+.balance__type {
+  width: 100%;
+  padding: 0.8rem 0.8rem 0.8rem 1.4rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background: var(--white);
+  border-radius: 0.8rem;
+  box-shadow: 0px 6px 14px rgba(99, 85, 155, 0.4);
+}
+.balance__type h2 {
+  font-size: 1.4rem;
+}
+.balance__type p {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+.balance__type span {
+  font-size: 2rem;
+}
+.balance__group {
+  display: flex;
+  flex-direction: column;
+}
+.balance__income span {
+  color: var(--tertiary);
+}
+.balance__expense span {
+  color: var(--secondary);
+  transform: rotate(-180deg);
+}
+.balance p {
+  margin-top: 0.4rem;
+}
+.balance__details {
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  padding: 0 2.4rem;
+  border-radius: 2.4rem;
+  font-size: 1.2rem;
+  margin-top: -2rem;
+  position: relative;
+}
+.balance__details::after {
+  position: absolute;
+  content: "";
+  border-radius: inherit;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  z-index: 400;
+  box-shadow: inset 0px -20px 20px var(--white);
+  pointer-events: none;
+}
+.balance__details h3 {
+  margin: 2rem 0 1rem 0;
+}
+.balance__details ul {
+  overflow: hidden;
+}
+.balance__empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80%;
+  color: var(--greyLight-3);
+  text-align: center;
+}
+.balance__empty span {
+  font-size: 7rem;
+  margin-bottom: 1.2rem;
+}
+.balance__empty p {
+  font-size: 1.4rem;
+}
+
+.transaction {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.8rem 0;
+  cursor: pointer;
+  font-weight: 700;
+}
+.transaction:hover > .transaction__price > button {
+  color: var(--greyDark);
+}
+.transaction__type, .transaction__price {
+  display: flex;
+  align-items: center;
+}
+.transaction__type span, .transaction__price span {
+  font-size: 1.8rem;
+}
+.transaction__type p, .transaction__price p {
+  margin: 0.8rem 1rem;
+  font-size: 1.4rem;
+}
+.transaction__type button, .transaction__price button {
+  color: var(--greyLight-3);
+  display: flex;
+}
+.transaction__type p {
+  font-size: 1.2rem;
+}
+.transaction__type span {
+  border-radius: 0.6rem;
+  padding: 0.6rem;
+}
+.transaction li {
+  display: flex;
+  justify-content: space-between;
+  margin: 1.4rem 0;
+}
+
+.type {
+  display: grid;
+  grid-template-rows: repeat(3, min-content);
+  justify-items: center;
+  align-items: center;
+  padding: 0 2.4rem;
+  grid-gap: 4rem;
+  margin: 4rem 0;
+}
+.type__tab {
+  display: flex;
+  width: 80%;
+  background: var(--greyLight-1);
+  border-radius: 0.6rem;
+  position: relative;
+  font-size: 1.2rem;
+}
+.type__tab input {
+  display: none;
+}
+.type__tab label {
+  padding: 0.8rem 0;
+  z-index: 300;
+  cursor: pointer;
+  width: 50%;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+.type__tab label:hover {
+  color: var(--primary);
+}
+.type__tab > input:checked + label {
+  color: var(--white);
+}
+.type__tab #tab-1:checked ~ .type__color {
+  transform: translateX(0%);
+  transition: all 0.5s ease;
+}
+.type__tab #tab-2:checked ~ .type__color {
+  transform: translateX(100%);
+  transition: all 0.5s ease;
+}
+.type__color {
+  background: var(--primary);
+  height: 100%;
+  left: 0;
+  width: 50%;
+  position: absolute;
+  border-radius: 0.6rem;
+  z-index: 200;
+}
+.type__categories {
+  grid-row: 2/3;
+  width: 100%;
+}
+.type__categories--inc, .type__categories--exp {
+  display: flex;
+  justify-content: space-between;
+}
+.type__categories--inc input, .type__categories--exp input {
+  display: none;
+}
+.type__categories--inc > input:not(:checked) + label > span, .type__categories--exp > input:not(:checked) + label > span {
+  background: var(--greyLight-1);
+  color: var(--greyLight-3);
+}
+.type__categories--inc label, .type__categories--exp label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+.type__categories--inc span, .type__categories--exp span {
+  font-size: 2rem;
+  border-radius: 50%;
+  height: 4rem;
+  width: 4rem;
+  display: flex;
+  margin-bottom: 0.8rem;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.type__categories--inc p, .type__categories--exp p {
+  font-size: 1rem;
+  pointer-events: none;
+}
+.type__amount {
+  grid-row: 3/4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px solid var(--greyLight-1);
+  padding: 0.4rem 0 1rem 0;
+}
+.type__amount p {
+  font-size: 3.6rem;
+}
+.type__amount button:disabled > span {
+  color: var(--greyLight-3);
+  cursor: default;
+}
+.type__amount button:disabled > span:hover {
+  color: var(--greyLight-3);
+}
+.type__amount button span {
+  font-size: 3.6rem;
+  cursor: pointer;
+  color: var(--greyDark);
+}
+.type__amount button span:hover {
+  color: var(--primary);
+}
+
+.calculator {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  align-items: center;
+  padding: 4rem 2.4rem;
+  margin-top: 1rem;
+}
+.calculator__number {
+  height: 5rem;
+  width: 5rem;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.calculator__number:hover {
+  color: var(--primary);
+}
+.calculator__cancel {
+  color: var(--greyLight-3);
+  cursor: pointer;
+}
+.calculator__cancel:hover {
+  color: var(--primary);
+}
+
+.icon-1 span, .icon-1 button:disabled > span:hover {
+  color: var(--other2);
+  background: #fff5e4;
+}
+
+.icon-2 span {
+  color: var(--secondary);
+  background: #ffeafd;
+}
+
+.icon-3 span {
+  color: var(--tertiary);
+  background: #f9ffd9;
+}
+
+.icon-4 span {
+  color: var(--other);
+  background: #e0f3ff;
+}
+
+.icon-5 span {
+  color: var(--greyDark);
+  border: 1px solid var(--greyLight-3);
+}
+
+ion-icon {
+  position: fixed;
+  font-size: 36px;
+  right: 20px;
+  top: 20px;
+  color: #EA4C89;
+}

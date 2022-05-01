@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Shami  Budget App</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script><link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div id="app">
+  <div class="container">
+    
+    <div class="balance">
+      
+      <div class="balance__total">
+        <h1>Balance</h1>
+        <p><span class="pound">₹</span>&nbsp;{{ total }}</p>
+      </div>
+      
+      <div class="balance__type balance__income">
+        <div class="balance__group">
+          <h2>Income</h2>
+          <p>₹ {{ inc }}</p>
+        </div>
+        <span class="material-icons">transit_enterexit</span>
+      </div>
+      
+      <div class="balance__type balance__expense">
+        <div class="balance__group">
+          <h2>Expenses</h2>
+          <p>₹ {{ exp }}</p>
+        </div>
+        <span class="material-icons">transit_enterexit</span>
+      </div>
+    </div>
+    
+    <div class="balance__details">
+      <h3>Recent Transactions</h3>
+      <div class="balance__empty" v-if="empty">
+        <span class="material-icons">loyalty</span>
+        <p>Start adding <br>a new transaction</p>
+      </div>
+      <ul>
+        <li class="transaction" v-for="(detail, index) in details" v-html="detail" @click="deleteTarget(index)" :key="index.id">
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="container">
+    <div class="type">
+      
+      <div class="type__tab">
+        <input type="radio" name="radio" id="tab-1" checked>
+        <label for="tab-1" @click="selectedTab(1)">Income</label>
+        <input type="radio" name="radio" id="tab-2">
+        <label for="tab-2" @click="selectedTab(2)">Expense</label>
+        <div class="type__color"></div>
+      </div>
+      
+      <div class="type__categories">
+        <div class="type__categories--inc" v-show="incomeBtn == true">
+          <input type="radio" name="radio-2"
+                        id="tab-3" ref="defaultInc" checked>
+          <label for="tab-3" class="icon-1" @click="selectedItem">
+            <span class="material-icons ">attach_money</span>
+            <p>Salary</p>
+          </label>
+          <input type="radio" name="radio-2"
+                        id="tab-4">
+          <label for="tab-4" class="icon-2" @click="selectedItem">
+            <span class="material-icons ">cake</span>
+            <p>Gift</p>
+          </label>
+          <input type="radio" name="radio-2"
+                        id="tab-5">
+          <label for="tab-5" class="icon-3" @click="selectedItem">
+            <span class="material-icons ">replay</span>
+            <p>Refund</p>
+          </label>
+          <input type="radio" name="radio-2"
+                        id="tab-6">
+          <label for="tab-6" class="icon-4" @click="selectedItem">
+            <span class="material-icons ">extension</span>
+            <p>Others</p>
+          </label>
+        </div>
+        
+        <div class="type__categories--exp" v-show="incomeBtn == false">
+          <input type="radio" name="radio-3"
+                        id="tab-7" ref="defaultExp" checked>
+          <label for="tab-7" class="icon-1" @click="selectedItem">
+            <span class="material-icons ">home</span>
+            <p>Rent</p>
+          </label>
+          <input type="radio" name="radio-3"
+                        id="tab-8">
+          <label for="tab-8" class="icon-2" @click="selectedItem">
+            <span class="material-icons ">shopping_basket</span>
+            <p>Shopping</p>
+          </label>
+          <input type="radio" name="radio-3"
+                        id="tab-9">
+          <label for="tab-9" class="icon-4" @click="selectedItem">
+            <span class="material-icons ">commute</span>
+            <p>Transport</p>
+          </label>
+          <button class="icon-5">
+            <span class="material-icons">drag_indicator</span>
+            <p>More</p>
+          </button>
+        </div>
+      </div>
+      
+      <div class="type__amount">
+        <p :style=" {color: currentColor }">₹ {{ current }}</p>
+        <button class="type__add" @click="add" ><span class="material-icons">add_circle</span></button>
+      </div>
+    </div>
+    
+    <div class="calculator">
+      <div class="calculator__number" @click="pressed">1</div>
+      <div class="calculator__number" @click="pressed">2</div>
+      <div class="calculator__number" @click="pressed">3</div>
+      <div class="calculator__number" @click="pressed">4</div>
+      <div class="calculator__number" @click="pressed">5</div>
+      <div class="calculator__number" @click="pressed">6</div>
+      <div class="calculator__number" @click="pressed">7</div>
+      <div class="calculator__number" @click="pressed">8</div>
+      <div class="calculator__number" @click="pressed">9</div>
+      <div class="calculator__number" @click="pressed" data-action="decimal">.</div>
+      <div class="calculator__number" @click="pressed">0</div>
+      <div class="calculator__cancel"  data-action="clear" @click="clear"><span class="material-icons">backspace</span></div>
+    </div>
+  </div>
+  
+ 
+</div>
+<!-- partial -->
+  <script src='https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>
